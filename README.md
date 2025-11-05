@@ -1,3 +1,7 @@
+# What is Mux?
+
+Mux is a simple JellyFin music playback web-app for desktop.
+
 # Installing
 
 ```sh
