@@ -15,7 +15,7 @@ npm i
 
 At the root of the project create a `.env` file.
 
-This file will contain server-side parameters for the app. Your ENV should look like the following:
+This file will contain server-side parameters for the app. Your `.env` file should look like the following:
 
 ```env
 API_KEY="<Your JellyFin API Key>"
