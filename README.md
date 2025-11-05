@@ -20,6 +20,8 @@ ADDRESS="<https://your.jellyfin.instance>"
 COLLECTION="<Collection ID for where your albums are stored>"
 ```
 
+(I plan on switching to in-app authentication instead of this at some point. This project just started out with me using the API key initially.)
+
 # Running Mux
 
 After your environment is configured and installed you should be able to run Mux with:
