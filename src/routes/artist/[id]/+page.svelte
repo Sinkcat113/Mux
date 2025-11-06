@@ -1,13 +1,7 @@
 <script lang="ts">
-    import Track from '$lib/components/Track.svelte';
-    import { playing } from '$lib/stores/playing.js';
-    import { playlist } from '$lib/stores/playlist.js';
-    import { onMount } from 'svelte';
     import AlbumPlaceholder from "$lib/assets/PlaceholderAlbum.png";
 
     const { data } = $props()
-
-    // console.log(data.Tracks.Items)
 </script>
 
 <div class="album-page">

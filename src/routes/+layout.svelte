@@ -2,7 +2,7 @@
 	import favicon from '$lib/assets/Mux_Logo.png';
 	import MuxLogo from "$lib/assets/Mux_Logo_Extended.png";
     import Player from '$lib/components/Player.svelte';
-    import { navigating } from '$app/state';
+    import { navigating, page } from '$app/state';
 	import ForwardIcon from "$lib/assets/forward.png";
 	import BackIcon from "$lib/assets/back.png";
 	import SearchIcon from "$lib/assets/magnifying-glass.png";
@@ -27,42 +27,47 @@
 	<title>Mux</title>
 </svelte:head>
 
-<div class="top">
-	<div class="nav">
-		<div class="nav-history">
-			<button class="nav-button" onclick={() => {
-				window.history.back()
-			}}>
-				<img class="control-button" src={BackIcon} alt="">
-			</button>
-			<button class="nav-button" onclick={() => {
-				window.history.forward()
-			}}>
-				<img class="control-button" src={ForwardIcon} alt="">
-			</button>
+{#if page.url.pathname != "/login"}
+	<div class="top">
+		<div class="nav">
+			<div class="nav-history">
+				<button class="nav-button" onclick={() => {
+					window.history.back()
+				}}>
+					<img class="control-button" src={BackIcon} alt="">
+				</button>
+				<button class="nav-button" onclick={() => {
+					window.history.forward()
+				}}>
+					<img class="control-button" src={ForwardIcon} alt="">
+				</button>
+			</div>
+			<div class="nav-lib">
+				<button class="nav-button" onclick={() => {
+					goto("/")
+				}}>
+					<img class="control-button" src={LibraryIcon} alt="">
+				</button>
+			</div>
+			<div class="logo-cotainer">
+				<img class="logo" src={MuxLogo} alt="">
+			</div>
 		</div>
-		<div class="nav-lib">
-			<button class="nav-button" onclick={() => {
-				goto("/")
-			}}>
-				<img class="control-button" src={LibraryIcon} alt="">
-			</button>
-		</div>
-		<div class="logo-cotainer">
-			<img class="logo" src={MuxLogo} alt="">
+		<div class="search-bar">
+			<img class="control-button" style="padding: 7px;" src={SearchIcon} alt="">
+			<input type="text" bind:value={searchTerm} onkeypress={handleSearch} placeholder="Search...">
 		</div>
 	</div>
-	<div class="search-bar">
-		<img class="control-button" style="padding: 7px;" src={SearchIcon} alt="">
-		<input type="text" bind:value={searchTerm} onkeypress={handleSearch} placeholder="Search...">
-	</div>
-</div>
+{/if}
+
 
 <div class={navigating.complete ? "loader" : ""}>
 	{@render children()}
 </div>
 
-<Player />
+{#if page.url.pathname != "/login"}
+	<Player />
+{/if}
 
 <style>
 

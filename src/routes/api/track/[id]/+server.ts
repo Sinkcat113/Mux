@@ -1,7 +1,7 @@
 import { ADDRESS, API_KEY } from '$env/static/private';
 
 
-export async function GET({ params }) {
+export async function GET({ params, cookies }) {
     const resp = await fetch(`${ADDRESS}/Items/${params.id}/Download?api_key=${API_KEY}`);
     
     const headers = {
@@ -11,8 +11,14 @@ export async function GET({ params }) {
         "Content-Length": resp.headers.get("Content-Length")!        
     }
 
-    return new Response(await resp.body, {
-        status: await resp.status === 206 ? 206 : 200,
-        headers: headers
-    })
+    if (cookies.get("user")) {
+        return new Response(await resp.body, {
+            status: await resp.status === 206 ? 206 : 200,
+            headers: headers
+        })
+    } else {
+        return new Response(JSON.stringify({message: "Forbidden"}), {
+            status: 403
+        })
+    }
 }
