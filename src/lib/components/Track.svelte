@@ -5,7 +5,7 @@
     import type { Track } from "$lib/types";
     import { onMount } from "svelte";
 
-    const { contxt, album, track, index } = $props()
+    const { contxt, album, track, index, authState } = $props()
 
     const handleSongSelect = (index: number) => {
         context.set(contxt)
@@ -22,7 +22,7 @@
     })
 </script>
 
-<button
+<button disabled={!authState}
     class={currentTrack && currentTrack.Id === track.Id
         ? "track-selected"
         : "track"}
@@ -65,6 +65,11 @@
         border-color: rgba(128, 128, 128, 0.123);
         background-color: transparent;
         width: 100%;
+    }
+
+    .track:disabled {
+        opacity: 50%;
+        cursor: default;
     }
     
     .track:hover {

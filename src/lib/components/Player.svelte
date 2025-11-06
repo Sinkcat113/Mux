@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { playing } from "$lib/stores/playing";
 	import { playlist } from "$lib/stores/playlist";
-	import type { Album, Track, TrackList } from "$lib/types";
+	import type { Album, Track } from "$lib/types";
 	import { onMount } from "svelte";
 	import PlaceholderAlbum from "$lib/assets/PlaceholderAlbum.png"
     import { context } from "$lib/stores/context";
@@ -11,6 +11,8 @@
 	import NextButton from "$lib/assets/next.png";
 	import VolumeIcon from "$lib/assets/volume-up.png";
 	import MuteIcon from "$lib/assets/mute.png";
+
+	const { uid } = $props()
 
 	let audio = $state() as HTMLAudioElement;
 	let index = 0;
@@ -77,45 +79,47 @@
 	}}
 ></audio>
 
-
-<div class="container">
-	<a href={contxt && contxt.Id ? `/album/${contxt.Id}` : `/`}>
-		<div class="track-section">
-			<img class="cover" src={trck && trck.Id ? `/api/track/${trck.Id}/cover/50/50` : PlaceholderAlbum} onerror={(e) => {
-				if (e.target && e.target instanceof HTMLImageElement)
-				e.target.src = PlaceholderAlbum
-			}} alt="">
-			<div class="track-info">
-				<p class="title">{trck && trck.Name ? trck.Name : ``}</p>
-				<p class="artists">{trck && trck.AlbumArtist ? trck.AlbumArtist : ``}</p>
+{#if uid}
+	<div class="container">
+		<a href={contxt && contxt.Id ? `/album/${uid}/${contxt.Id}` : `/`}>
+			<div class="track-section">
+				<img class="cover" src={trck && trck.Id ? `/api/track/${trck.Id}/cover/50/50` : PlaceholderAlbum} onerror={(e) => {
+					if (e.target && e.target instanceof HTMLImageElement)
+					e.target.src = PlaceholderAlbum
+				}} alt="">
+				<div class="track-info">
+					<p class="title">{trck && trck.Name ? trck.Name : ``}</p>
+					<p class="artists">{trck && trck.AlbumArtist ? trck.AlbumArtist : ``}</p>
+				</div>
+			</div>
+		</a>
+		<div class="player">
+			<div class="scrubb-wrapper">
+				<input class="scrubber" type="range" bind:value={currentTime} max={duration} step="0.02">
+			</div>
+			<div class="audio-controls">
+				<button class="under-button" onclick={previous}>
+					<img class="control-button" src={PreviousButton} alt="">
+				</button>
+				<button class="under-button" onclick={() => {playstate = !playstate}}>
+					<img class="control-button" src={playstate ? PlayButton : PauseButton} alt="">
+				</button>
+				<button class="under-button" onclick={next}>
+					<img class="control-button" src={NextButton} alt="">
+				</button>
 			</div>
 		</div>
-	</a>
-	<div class="player">
-		<div class="scrubb-wrapper">
-			<input class="scrubber" type="range" bind:value={currentTime} max={duration} step="0.02">
-		</div>
-		<div class="audio-controls">
-			<button class="under-button" onclick={previous}>
-				<img class="control-button" src={PreviousButton} alt="">
+		<div class="volume-controls">
+			<button class="under-button" onclick={() => {
+				muted = !muted
+			}}>
+				<img class="control-button" src={muted ? MuteIcon : VolumeIcon} alt="">
 			</button>
-			<button class="under-button" onclick={() => {playstate = !playstate}}>
-				<img class="control-button" src={playstate ? PlayButton : PauseButton} alt="">
-			</button>
-			<button class="under-button" onclick={next}>
-				<img class="control-button" src={NextButton} alt="">
-			</button>
+			<input type="range" class="volume-slider" bind:value={volume} max="1" step="0.01">
 		</div>
 	</div>
-	<div class="volume-controls">
-		<button class="under-button" onclick={() => {
-			muted = !muted
-		}}>
-			<img class="control-button" src={muted ? MuteIcon : VolumeIcon} alt="">
-		</button>
-		<input type="range" class="volume-slider" bind:value={volume} max="1" step="0.01">
-	</div>
-</div>
+{/if}
+
 
 
 <style>

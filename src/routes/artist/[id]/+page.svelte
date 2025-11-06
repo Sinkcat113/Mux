@@ -17,7 +17,7 @@
         <h2>Albums</h2>
         <div class="album-selector">
             {#each data.Tracks.Items as item}
-                <a href="/album/{item.Id}">
+                <a href="/album/{data.UserID}/{item.Id}">
                     <div class="album">
                         <img class="cover" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)

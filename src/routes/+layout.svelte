@@ -9,7 +9,7 @@
 	import LibraryIcon from "$lib/assets/library.png";
     import { goto } from '$app/navigation';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	let searchTerm = $state("")
 
@@ -66,7 +66,7 @@
 </div>
 
 {#if page.url.pathname != "/login"}
-	<Player />
+	<Player uid={data.UserID} />
 {/if}
 
 <style>

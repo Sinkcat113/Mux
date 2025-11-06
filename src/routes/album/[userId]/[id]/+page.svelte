@@ -10,14 +10,14 @@
     </div>
     <div class="right-col">
         <div class="album-info">
-            <a href="/artist/{data.Album.AlbumArtists[0].Id}">
+            <a href={data.isAuth ? `/artist/${data.Album.AlbumArtists[0].Id}` : "/"}>
                 <p>{data.Album.AlbumArtist}</p>
             </a>
             <h2>{data.Album.Name}</h2>
         </div>
         <div class="album-list">
             {#each data.Tracks.Items as item, index}
-                <Track contxt={data.Album} album={data.Tracks.Items} track={item} index={index} />
+                <Track contxt={data.Album} album={data.Tracks.Items} track={item} index={index} authState={data.isAuth} />
             {/each}
         </div>
     </div>

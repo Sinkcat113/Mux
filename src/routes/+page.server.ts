@@ -17,6 +17,7 @@ export const load = async ({ cookies }) => {
 
     return {
         Albums: data as AlbumList,
-        Artists: artistData as ArtistList
+        Artists: artistData as ArtistList,
+        UserID: JSON.parse(cookies.get("user") || "").User.Id
     }
 };

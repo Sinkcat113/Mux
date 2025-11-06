@@ -4,9 +4,7 @@ import type { Album, TrackList } from '$lib/types.js';
 
 export const load = async ({ params, cookies }) => {
 
-    const userID = JSON.parse(cookies.get("user") || "").User.Id
-
-    const resp = await fetch(`${ADDRESS}/Users/${userID}/Items/${params.id}?api_key=${API_KEY}`)
+    const resp = await fetch(`${ADDRESS}/Users/${params.userId}/Items/${params.id}?api_key=${API_KEY}`)
     const data = await resp.json()
 
     const tracksResp = await fetch(`${ADDRESS}/Items?parentId=${params.id}&collectionType=music&api_key=${API_KEY}`)
@@ -14,6 +12,7 @@ export const load = async ({ params, cookies }) => {
 
     return {
         Album: data as Album,
-        Tracks: tracks as TrackList
+        Tracks: tracks as TrackList,
+        isAuth: cookies.get("user") ? true : false
     }
 };

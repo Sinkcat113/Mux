@@ -13,7 +13,7 @@
     <div class="album-selector">
         {#each Albums as item}
             {#if item.Name.includes(page.params.term || "") || item.AlbumArtist.includes(page.params.term || "")}
-                <a href="/album/{item.Id}">
+                <a href="/album/{data.UserID}/{item.Id}">
                     <div class="album">
                         <img class="cover" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)
