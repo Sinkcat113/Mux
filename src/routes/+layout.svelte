@@ -1,10 +1,9 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
-    import { playing } from '$lib/stores/playing';
-    import { onMount } from 'svelte';
+	import favicon from '$lib/assets/Mux_Logo.png';
+	import MuxLogo from "$lib/assets/Mux_Logo_Extended.png";
     import Player from '$lib/components/Player.svelte';
     import { navigating } from '$app/state';
-	import ForwarIcon from "$lib/assets/forward.png";
+	import ForwardIcon from "$lib/assets/forward.png";
 	import BackIcon from "$lib/assets/back.png";
 	import SearchIcon from "$lib/assets/magnifying-glass.png";
 	import LibraryIcon from "$lib/assets/library.png";
@@ -24,7 +23,8 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={favicon} type="image/x-icon" />
+	<title>Mux</title>
 </svelte:head>
 
 <div class="top">
@@ -38,7 +38,7 @@
 			<button class="nav-button" onclick={() => {
 				window.history.forward()
 			}}>
-				<img class="control-button" src={ForwarIcon} alt="">
+				<img class="control-button" src={ForwardIcon} alt="">
 			</button>
 		</div>
 		<div class="nav-lib">
@@ -47,6 +47,9 @@
 			}}>
 				<img class="control-button" src={LibraryIcon} alt="">
 			</button>
+		</div>
+		<div class="logo-cotainer">
+			<img class="logo" src={MuxLogo} alt="">
 		</div>
 	</div>
 	<div class="search-bar">
@@ -166,6 +169,12 @@
 	.nav {
 		display: flex;
 		gap: 12px;
+	}
+
+	.logo {
+		height: 30px;
+		position: relative;
+		top: 0.4rem;
 	}
 
 	@keyframes load {
