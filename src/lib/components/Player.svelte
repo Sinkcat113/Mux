@@ -245,6 +245,15 @@
 	  border-radius: 12px;
 	  transition: 0.3s;
     }
+
+    .scrubber::-moz-slider-runnable-track {
+      height: 5px;
+      -webkit-appearance: none;
+      color: #ffffff;
+      margin-top: -1px;
+	  border-radius: 12px;
+	  transition: 0.3s;
+    }
     
     .scrubber::-webkit-slider-thumb {
       width: 6px;
@@ -255,6 +264,17 @@
 	  border-radius: 12px;
 	  transition: 0.3s;
     }
+
+	input[type="range"]::-moz-range-progress {
+		background-color: rgb(255, 255, 255);
+		height: 1em;
+	}
+
+	input[type="range"]::-moz-range-thumb {
+		background-color: white;
+		width: 1px;
+		border: none;
+	}
 
 	.volume-controls {
 		padding: 12px;
