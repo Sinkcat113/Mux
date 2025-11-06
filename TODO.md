@@ -1,5 +1,5 @@
 
-# User Auth ✅
+# ~~User Auth~~ ✅
 ~~Add user authentication through JellyFin.~~
 
 # Navigation
