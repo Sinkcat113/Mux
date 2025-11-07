@@ -11,9 +11,11 @@
 	<img class="image-blur" src={`/api/track/${data.Album.Id}/cover/320/320`} alt="">
     <div class="right-col">
         <div class="album-info">
-            <a href={data.isAuth ? `/artist/${data.Album.AlbumArtists[0].Id}` : "/"}>
-                <p>{data.Album.AlbumArtist}</p>
-            </a>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <a href={data.isAuth ? `/artist/${data.Album.AlbumArtists[0].Id}` : "/"}>
+                    <p>{data.Album.AlbumArtist}</p>
+                </a>
+            </div>
             <h2>{data.Album.Name}</h2>
         </div>
         <div class="album-list">
@@ -32,6 +34,7 @@
         color: white;
         margin: 0;
         font-size: 3rem;
+        text-align: center;
     }
 
     p {
@@ -39,17 +42,24 @@
         color: gray;
         margin: 0;
         font-size: 1.5rem;
+        text-align: center;
+        margin-top: 12px;
+        transition: 0.12s;
+    }
+
+    p:hover {
+        color: white;
     }
 
     .album-page {
         display: flex;
-        gap: 30px;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .album-info {
         display: flex;
         flex-direction: column-reverse;
-        height: 300px;
     }
 
     .right-col {
@@ -65,19 +75,25 @@
         height: 320px;
         border-radius: 5px;
         z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
     }
 
     .image-blur {
         position: absolute;
-        left: 20px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        left: 250px;
         right: 0;
         top: 120px;
-        filter: blur(80px) brightness(70%);
+        filter: blur(80px) opacity(20%);
         z-index: 0;
     }
 
     a {
-        text-decoration-color: gray;
-        text-decoration-thickness: 0.5px;
+        text-decoration: none;
+        cursor: pointer;
     }
 </style>

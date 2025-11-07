@@ -15,6 +15,8 @@
 	import LoopOne from "$lib/assets/repeat-one.png"
 	import QueueIcon from "$lib/assets/queue.png";
     import TrackItem from "./TrackItem.svelte";
+    import { Tween } from "svelte/motion";
+    import { cubicInOut } from "svelte/easing";
 
 	const { uid } = $props()
 
@@ -283,7 +285,7 @@
 		display: flex;
 		justify-content: space-between;
 		bottom: 0;
-		left: 0;
+		left: 230px;
 		right: 0;
 		position: fixed;
 		/* background-color: #141414; */
@@ -332,7 +334,7 @@
 		height: 50px;
 		position: fixed;
 		bottom: 0px;
-		left: 12px;
+		left: 241px;
 		filter: blur(30px) brightness(70%);
 		z-index: 2;
 	}

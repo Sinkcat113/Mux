@@ -1,3 +1,21 @@
+
+// Libraries
+
+export type Libraries = {
+    Items: [
+        {
+            Name: string,
+            Id: string,
+        }
+    ]
+}
+
+export type Library = {
+    Name: string,
+    Id: string,
+}
+
+
 // Albums -----------------------------------------------------------------------------------------------
 
 export type AlbumList = {

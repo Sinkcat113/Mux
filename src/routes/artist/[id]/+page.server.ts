@@ -4,7 +4,7 @@ import type { Album, Artist, ArtistList, TrackList } from '$lib/types.js';
 
 export const load = async ({ params, cookies }) => {
 
-    const userID = JSON.parse(cookies.get("user") || "").User.Id
+    const userID: string = JSON.parse(cookies.get("user") || "").User.Id
 
     const resp = await fetch(`${ADDRESS}/Users/${userID}/Items/${params.id}?api_key=${API_KEY}`)
     const data = await resp.json()

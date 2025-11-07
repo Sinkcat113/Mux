@@ -21,7 +21,15 @@ export const actions = {
             })
 
             if (await resp.status === 200) {
-                cookies.set("user", JSON.stringify(await resp.json()), {path: "/"})
+
+                const userData = await resp.json()
+
+                cookies.set("user", JSON.stringify({
+                    User: {
+                        Name: userData.User.Name,
+                        Id: userData.User.Id,
+                    }
+                }), {path: "/"})
 
                 if (cookies.get("user"))
                     redirect(301, "/");
