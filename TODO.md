@@ -8,5 +8,5 @@ Move all navigation to a side bar and replace the library button with a list of 
 Add a user profile button to the right of search. Maybe we do move search to the new side nav if it'll look cleaner
 
 
-# ~~Player~~
+# ~~Player~~ ✅
 ~~Add a looping control and a queue control~~
