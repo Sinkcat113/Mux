@@ -167,7 +167,7 @@
 	}
 
 	.search-bar:has(input:focus) {
-		background-color: #242424ce;
+		background-color: #6969699d;
 	}
 
 	.nav {
