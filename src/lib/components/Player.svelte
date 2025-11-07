@@ -154,7 +154,7 @@
 					</button>
 				</div>
 				<div>
-					<button class={queueOpen ? "under-button-select" : "under-button"} onclick={() => {queueOpen = !queueOpen}}>
+					<button class={queueOpen && contxt.Name ? "under-button-select" : "under-button"} onclick={() => {queueOpen = !queueOpen}}>
 						<img class="control-button" src={QueueIcon} alt="">
 					</button>
 				</div>
