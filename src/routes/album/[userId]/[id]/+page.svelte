@@ -8,6 +8,7 @@
     <div class="left-col">
         <img class="cover" src="/api/track/{data.Album.Id}/cover/320/320" alt="">
     </div>
+	<img class="image-blur" src={`/api/track/${data.Album.Id}/cover/320/320`} alt="">
     <div class="right-col">
         <div class="album-info">
             <a href={data.isAuth ? `/artist/${data.Album.AlbumArtists[0].Id}` : "/"}>
@@ -59,9 +60,20 @@
     }
 
     .cover {
+        position: relative;
         width: 320px;
         height: 320px;
         border-radius: 5px;
+        z-index: 1;
+    }
+
+    .image-blur {
+        position: absolute;
+        left: 20px;
+        right: 0;
+        top: 120px;
+        filter: blur(80px) brightness(70%);
+        z-index: 0;
     }
 
     a {

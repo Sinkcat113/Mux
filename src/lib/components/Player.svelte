@@ -113,6 +113,7 @@
 	
 
 {#if uid}
+	<img class="image-blur" src={trck && trck.Id ? `/api/track/${trck.Id}/cover/50/50` : PlaceholderAlbum} alt="">
 	<div class="container">
 		<a href={contxt && contxt.Id ? `/album/${uid}/${contxt.Id}` : `/`}>
 			<div class="track-section">
@@ -180,8 +181,8 @@
 		top: 70px;
 		bottom: 70px;
 		right: 20px;
-		width: 250px;
-		padding: 12px;
+		width: 300px;
+		/* padding: 12px; */
 		z-index: 2;
 		border-style: solid;
 		border-radius: 12px;
@@ -189,7 +190,6 @@
 		border-color: rgba(128, 128, 128, 0.17);
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
 		overflow-y: scroll;
 	}
 
@@ -199,6 +199,12 @@
 		border-bottom-style: solid;
 		border-width: 1px;
 		border-color: rgba(128, 128, 128, 0.216);
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 12px;
+		background-color: #141414;
 	}
 
 	.album-details {
@@ -307,6 +313,7 @@
 
 	.track-info {
 		padding: 3px;
+		margin-top: 6px;
 	}
 
 	.artists {
@@ -317,6 +324,17 @@
 		width: 50px;
 		height: 50px;
 		border-radius: 5px;
+		z-index: 3;
+	}
+
+	.image-blur {
+		width: 50px;
+		height: 50px;
+		position: fixed;
+		bottom: 0px;
+		left: 12px;
+		filter: blur(30px) brightness(70%);
+		z-index: 2;
 	}
 
 	a {
