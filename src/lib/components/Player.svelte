@@ -11,13 +11,17 @@
 	import NextButton from "$lib/assets/next.png";
 	import VolumeIcon from "$lib/assets/volume-up.png";
 	import MuteIcon from "$lib/assets/mute.png";
+	import LoopIcon from "$lib/assets/repeat.png";
+	import LoopOne from "$lib/assets/repeat-one.png"
+	import QueueIcon from "$lib/assets/queue.png";
+    import TrackItem from "./TrackItem.svelte";
 
 	const { uid } = $props()
 
 	let audio = $state() as HTMLAudioElement;
 	let index = 0;
 	let contxt = $state({}) as Album;
-	let tracklist: Array<Track> = [];
+	let tracklist = $state([]) as Array<Track>;
 	let trck = $state({}) as Track;
 
 	let currentTime = $state(0)
@@ -25,6 +29,9 @@
 	let playstate = $state(true)
 	let volume = $state(0.7)
 	let muted = $state(false)
+
+	let loopState = $state(0)
+	let queueOpen = $state(false)
 
 	onMount(() => {
 		playing.subscribe((track) => {
@@ -68,16 +75,42 @@
 	bind:paused={playstate}
 	bind:volume={volume}
 	bind:muted={muted}
+	loop={loopState == 2 ? true : false}
 	onended={() => {
-		// console.log(tracklist)
-		index++
-		audio.src = `/api/track/${tracklist[index].Id}`
-		playing.set(tracklist[index])
+		if (tracklist.length - 1 == index && loopState == 1) {
+			index = 0
+			audio.src = `/api/track/${tracklist[index].Id}`
+			playing.set(tracklist[index])
+		} else {
+			index++
+			audio.src = `/api/track/${tracklist[index].Id}`
+			playing.set(tracklist[index])
+		}
 	}}
 	onloadedmetadata={() => {
 		audio.play();
 	}}
 ></audio>
+
+{#if contxt.Name && queueOpen}
+	<div class="queue-container">
+		<div class="album-view">
+			<div class="cover-container">
+				<img class="cover" src={tracklist.length > 0 ? `/api/track/${contxt.Id}/cover/128/128` : PlaceholderAlbum} alt="">
+			</div>
+			<div class="album-details">
+				<p class="title">{contxt.Name}</p>
+				<p class="artists">{contxt.AlbumArtist}</p>
+			</div>
+		</div>
+		<div class="queue-tracks">
+			{#each tracklist as tck, index}
+				<TrackItem contxt={contxt} album={tracklist} track={tck} index={index} authState={uid ? true : false} />
+			{/each}
+		</div>
+	</div>
+{/if}
+	
 
 {#if uid}
 	<div class="container">
@@ -98,15 +131,33 @@
 				<input class="scrubber" type="range" bind:value={currentTime} max={duration} step="0.02">
 			</div>
 			<div class="audio-controls">
-				<button class="under-button" onclick={previous}>
-					<img class="control-button" src={PreviousButton} alt="">
-				</button>
-				<button class="under-button" onclick={() => {playstate = !playstate}}>
-					<img class="control-button" src={playstate ? PlayButton : PauseButton} alt="">
-				</button>
-				<button class="under-button" onclick={next}>
-					<img class="control-button" src={NextButton} alt="">
-				</button>
+				<div>
+					<button class={loopState > 0 ? "under-button-select" : "under-button"} onclick={() => {
+						if (loopState == 2) {
+							loopState = 0
+						} else {
+							loopState++
+						}
+					}}>
+						<img class="control-button" src={loopState == 2 ? LoopOne : LoopIcon} alt="">
+					</button>
+				</div>
+				<div>
+					<button class="under-button" onclick={previous}>
+						<img class="control-button" src={PreviousButton} alt="">
+					</button>
+					<button class="under-button" onclick={() => {playstate = !playstate}}>
+						<img class="control-button" src={playstate ? PlayButton : PauseButton} alt="">
+					</button>
+					<button class="under-button" onclick={next}>
+						<img class="control-button" src={NextButton} alt="">
+					</button>
+				</div>
+				<div>
+					<button class={queueOpen ? "under-button-select" : "under-button"} onclick={() => {queueOpen = !queueOpen}}>
+						<img class="control-button" src={QueueIcon} alt="">
+					</button>
+				</div>
 			</div>
 		</div>
 		<div class="volume-controls">
@@ -123,6 +174,36 @@
 
 
 <style>
+	.queue-container {
+		background-color: rgb(20, 20, 20);
+		position: fixed;
+		top: 70px;
+		bottom: 70px;
+		right: 20px;
+		width: 250px;
+		padding: 12px;
+		z-index: 2;
+		border-style: solid;
+		border-radius: 12px;
+		border-width: 1px;
+		border-color: rgba(128, 128, 128, 0.17);
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		overflow-y: scroll;
+	}
+
+	.album-view {
+		display: flex;
+		gap: 12px;
+		border-bottom-style: solid;
+		border-width: 1px;
+		border-color: rgba(128, 128, 128, 0.216);
+	}
+
+	.album-details {
+		padding: 7px;
+	}
 
 	.player {
 		display: flex;
@@ -133,7 +214,7 @@
 	.audio-controls {
 		display: flex;
 		gap: 12px;
-		justify-content: center;
+		justify-content: space-between;
 	}
 
 	.under-button {
@@ -145,6 +226,19 @@
 		transition: 0.12s;
 		cursor: pointer;
 		border-radius: 5px;
+	}
+
+	.under-button-select { 
+		padding: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: transparent;
+		border: none;
+		transition: 0.12s;
+		cursor: pointer;
+		border-radius: 5px;
+		background-color: #242424;
+		scale: 105%;
 	}
 
 	.under-button:hover {

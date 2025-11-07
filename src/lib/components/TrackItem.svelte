@@ -65,6 +65,8 @@
         border-color: rgba(128, 128, 128, 0.123);
         background-color: transparent;
         width: 100%;
+        text-wrap-mode: nowrap;
+        overflow-x: hidden;
     }
 
     .track:disabled {
@@ -89,5 +91,7 @@
         background-color: rgba(128, 128, 128, 0.137);
         width: 100%;
         cursor: default;
+        text-wrap-mode: nowrap;
+        overflow-x: hidden;
     }
 </style>

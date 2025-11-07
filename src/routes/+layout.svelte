@@ -60,7 +60,6 @@
 	</div>
 {/if}
 
-
 <div class={navigating.complete ? "loader" : ""}>
 	{@render children()}
 </div>
@@ -85,7 +84,7 @@
 	.loader {
 		animation-name: load;
 		animation-iteration-count: infinite;
-		animation-duration: 1s;
+		animation-duration: 1.7s;
 		animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	}
 

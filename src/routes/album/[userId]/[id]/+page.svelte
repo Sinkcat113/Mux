@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Track from '$lib/components/Track.svelte';
+    import Track from '$lib/components/TrackItem.svelte';
 
     const { data } = $props()
 </script>
