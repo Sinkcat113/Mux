@@ -10,3 +10,6 @@
 
 # ~~Player~~ ✅
 ~~Add a looping control and a queue control~~
+
+# Search
+Fix search
