@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from '$app/state';
     import Track from '$lib/components/TrackItem.svelte';
 
     const { data } = $props()
@@ -12,7 +13,7 @@
     <div class="right-col">
         <div class="album-info">
             <div style="display: flex; gap: 12px; justify-content: center;">
-                <a href={data.isAuth ? `/artist/${data.Album.AlbumArtists[0].Id}` : "/"}>
+                <a href={data.isAuth ? `/artist/${page.params.collection}/${data.Album.AlbumArtists[0].Id}` : "/"}>
                     <p>{data.Album.AlbumArtist}</p>
                 </a>
             </div>

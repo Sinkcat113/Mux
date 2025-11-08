@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from "$app/state";
     import AlbumPlaceholder from "$lib/assets/PlaceholderAlbum.png";
 
     const { data } = $props()
@@ -17,7 +18,7 @@
         <h2>Albums</h2>
         <div class="album-selector">
             {#each data.Tracks.Items as item}
-                <a href="/album/{data.UserID}/{item.Id}">
+                <a href="/album/{page.params.collection}/{data.UserID}/{item.Id}">
                     <div class="album">
                         <img class="cover" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)
@@ -36,7 +37,7 @@
         <h2>Similar to {data.Artist.Name}</h2>
         <div class="album-list">
             {#each data.Artists.Items as item}
-                <a href="/artist/{item.Id}">
+                <a href="/artist/{page.params.collection}/{item.Id}">
                     <div class="album">
                         <img class="cover-artist" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)

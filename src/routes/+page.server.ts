@@ -1,4 +1,4 @@
-import { ADDRESS, API_KEY, COLLECTION } from "$env/static/private";
+import { ADDRESS, API_KEY } from "$env/static/private";
 import type { Libraries } from "$lib/types";
 import type { AlbumList, ArtistList } from "$lib/types";
 import { redirect } from "@sveltejs/kit";

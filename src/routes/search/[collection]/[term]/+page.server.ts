@@ -1,15 +1,15 @@
-import { ADDRESS, API_KEY, COLLECTION } from "$env/static/private";
+import { ADDRESS, API_KEY } from "$env/static/private";
 import type { AlbumList, ArtistList } from "$lib/types";
 import { redirect } from "@sveltejs/kit";
 
 
-export const load = async ({ cookies }) => {
+export const load = async ({ cookies, params }) => {
 
     if (!cookies.get("user")) {
         redirect(308, "/login")
     }
 
-    const resp = await fetch(`${ADDRESS}/Items?parentId=${COLLECTION}&collectionType=music&api_key=${API_KEY}`);
+    const resp = await fetch(`${ADDRESS}/Items?parentId=${params.collection}&collectionType=music&api_key=${API_KEY}`);
     const data = await resp.json()
 
     const artistResp = await fetch(`${ADDRESS}/Artists?api_key=${API_KEY}`);

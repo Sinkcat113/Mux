@@ -17,6 +17,7 @@
     import TrackItem from "./TrackItem.svelte";
     import { Tween } from "svelte/motion";
     import { cubicInOut } from "svelte/easing";
+    import { page } from "$app/state";
 
 	const { uid } = $props()
 
@@ -117,7 +118,7 @@
 {#if uid}
 	<img class="image-blur" src={trck && trck.Id ? `/api/track/${trck.Id}/cover/50/50` : PlaceholderAlbum} alt="">
 	<div class="container">
-		<a href={contxt && contxt.Id ? `/album/${uid}/${contxt.Id}` : `/`}>
+		<a href={contxt && contxt.Id ? `/album/${page.params.collection}/${uid}/${contxt.Id}` : `/`}>
 			<div class="track-section">
 				<img class="cover" src={trck && trck.Id ? `/api/track/${trck.Id}/cover/50/50` : PlaceholderAlbum} onerror={(e) => {
 					if (e.target && e.target instanceof HTMLImageElement)

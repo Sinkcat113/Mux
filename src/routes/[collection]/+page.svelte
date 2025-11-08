@@ -3,6 +3,7 @@
     import ArtistPlaceholder from "$lib/assets/PlaceholderArtist.png";
     import AlbumPlaceholder from "$lib/assets/PlaceholderAlbum.png";
     import type { Album, AlbumList, Artist, ArtistList } from "$lib/types.js";
+    import { page } from "$app/state";
 
     let Albums = $state() as Array<Album>
     let Artists = $state() as Array<Artist>
@@ -18,7 +19,7 @@
     <h2>Albums</h2>
     <div class="album-selector">
         {#each Albums as item}
-            <a href="/album/{data.UserID}/{item.Id}">
+            <a href="/album/{page.params.collection}/{data.UserID}/{item.Id}">
                 <div class="album">
                     <img class="cover" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                         if (e.target && e.target instanceof HTMLImageElement)
@@ -35,7 +36,7 @@
     <h2>Artists</h2>
     <div class="album-selector">
         {#each Artists as item, index}
-            <a href="/artist/{item.Id}">
+            <a href="/artist/{page.params.collection}/{item.Id}">
                 <div class="album">
                     <img class="cover-artist" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                         if (e.target && e.target instanceof HTMLImageElement)

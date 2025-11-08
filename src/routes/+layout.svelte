@@ -18,9 +18,9 @@
 	const handleSearch = (e: KeyboardEvent) => {
 		if (e.key === "Enter")
 			if (!searchTerm)
-				goto("/")
+				goto(`/${page.params.collection}`)
 			else
-				goto(`/search/${searchTerm}`)
+				goto(`/search/${page.params.collection}/${searchTerm}`)
 	}
 </script>
 

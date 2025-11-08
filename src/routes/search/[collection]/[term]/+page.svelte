@@ -13,7 +13,7 @@
     <div class="album-selector">
         {#each Albums as item}
             {#if item.Name.includes(page.params.term || "") || item.AlbumArtist.includes(page.params.term || "")}
-                <a href="/album/{data.UserID}/{item.Id}">
+                <a href="/album/{page.params.collection}/{data.UserID}/{item.Id}">
                     <div class="album">
                         <img class="cover" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)
@@ -32,7 +32,7 @@
     <div class="album-selector">
         {#each Artists as item, index}
             {#if item.Name.includes(page.params.term || "")}
-                <a href="/artist/{item.Id}">
+                <a href="/artist/{page.params.collection}/{item.Id}">
                     <div class="album">
                         <img class="cover-artist" src="/api/track/{item.Id}/cover/128/128" onerror={(e) => {
                             if (e.target && e.target instanceof HTMLImageElement)
