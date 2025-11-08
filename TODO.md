@@ -11,5 +11,5 @@
 # ~~Player~~ ✅
 ~~Add a looping control and a queue control~~
 
-# Search
-Fix search to work with the new collection system
+# ~~Search~~ ✅
+~~Fix search to work with the new collection system~~
