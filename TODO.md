@@ -12,4 +12,4 @@
 ~~Add a looping control and a queue control~~
 
 # Search
-Fix search
+Fix search to work with the new collection system
