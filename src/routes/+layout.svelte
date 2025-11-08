@@ -29,7 +29,7 @@
 	<title>Mux</title>
 </svelte:head>
 
-{#if page.url.pathname != "/login"}
+{#if page.url.pathname != "/login" && data.User}
 	<div class="top">
 		<div class="nav">
 			<div class="nav-history">
@@ -43,9 +43,6 @@
 				}}>
 					<img class="control-button" src={ForwardIcon} alt="">
 				</button>
-			</div>
-			<div class="logo-cotainer">
-				<img class="logo" src={MuxLogo} alt="">
 			</div>
 		</div>
 		<div class="profile-container">
@@ -65,8 +62,11 @@
 	</div>
 {/if}
 
-{#if page.url.pathname != "/login"}
+{#if page.url.pathname != "/login" && data.User}
 	<div class="side-nav">
+		<div class="logo-cotainer">
+			<img class="logo" src={MuxLogo} alt="">
+		</div>
 		<div class="search-bar">
 			<img class="control-button" style="padding: 7px;" src={SearchIcon} alt="">
 			<input type="text" bind:value={searchTerm} onkeypress={handleSearch} placeholder="Search...">
@@ -92,7 +92,7 @@
 	{@render children()}
 </div>
 
-{#if page.url.pathname != "/login"}
+{#if page.url.pathname != "/login" && data.User}
 	<Player uid={data.User.User.Id} />
 {/if}
 
@@ -119,7 +119,7 @@
 		bottom: 0;
 		padding: 20px;
 		width: 200px;
-		gap: 50px;
+		gap: 20px;
 		/* background-color: rgb(20, 20, 20); */
 		z-index: 5;
 		overflow-y: scroll;
@@ -133,11 +133,15 @@
 		font-size: 0.9rem;
 	}
 
+	.nav-section {
+		margin-top: 20px;
+	}
+
 	.library-list {
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
-		margin-top: 20px;
+		margin-top: 12px;
 	}
 
 	.icon {
