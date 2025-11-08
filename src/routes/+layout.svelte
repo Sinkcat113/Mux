@@ -106,7 +106,7 @@
 		background-color: rgb(20, 20, 20);
 		padding: 20px;
 		padding-bottom: 100px;
-		padding-top: 70px;
+		padding-top: 65px;
 		margin-left: 220px;
 	}
 
