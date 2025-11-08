@@ -20,10 +20,7 @@ This file will contain server-side parameters for the app. Your `.env` file shou
 ```env
 API_KEY="<Your JellyFin API Key>"
 ADDRESS="<https://your.jellyfin.instance>"
-COLLECTION="<Collection ID for where your albums are stored>"
 ```
-
-The `COLLECTION` parameter may be confusing. This is just to point to where your actual albums are so like you have albums but above that is your library. This points to the library at which your albums are located.
 
 # Running Mux
 
