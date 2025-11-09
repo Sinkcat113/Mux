@@ -89,7 +89,9 @@
 
 
 <div class={navigating.complete ? "loader" : ""}>
-	{@render children()}
+	<div class={data.User ? "root" : "root-full"}>
+		{@render children()}
+	</div>
 </div>
 
 {#if page.url.pathname != "/login" && data.User}
@@ -98,16 +100,27 @@
 
 <style>
 
-	:root::-webkit-scrollbar {
+	.root::-webkit-scrollbar {
 		display: none;
 	}
 
 	:root {
 		background-color: rgb(20, 20, 20);
+	}
+
+	.root {
+		background-color: rgb(20, 20, 20);
 		padding: 20px;
 		padding-bottom: 100px;
 		padding-top: 65px;
 		margin-left: 220px;
+	}
+
+	.root-full {
+		background-color: rgb(20, 20, 20);
+		padding: 20px;
+		padding-bottom: 100px;
+		padding-top: 65px;
 	}
 
 	.side-nav {

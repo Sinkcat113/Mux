@@ -28,12 +28,12 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        padding: 100px;
         position: fixed;
+        top: 0;
         left: 0;
         right: 0;
-        top: 0;
         bottom: 0;
-        padding: 100px;
     }
 
     .login-form {
