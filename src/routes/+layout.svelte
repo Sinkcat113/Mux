@@ -8,6 +8,7 @@
 	import SearchIcon from "$lib/assets/magnifying-glass.png";
 	import LibraryIcon from "$lib/assets/library.png";
     import { goto } from '$app/navigation';
+    import { clickOutside } from 'svelte-outside';
 
 	let { children, data } = $props();
 
@@ -46,7 +47,7 @@
 			</div>
 		</div>
 		<div class="profile-container">
-			<button class="btn-account" onclick={() => {isAccountOpen = !isAccountOpen}}>
+			<button class="btn-account" onclick={() => {isAccountOpen = !isAccountOpen}} use:clickOutside={(e) => {isAccountOpen = false}}>
 				<img class="profile-pic" src="/api/user/{data.User.User.Id}/image" alt="">
 			</button>
 			{#if isAccountOpen}

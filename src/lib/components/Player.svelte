@@ -15,8 +15,6 @@
 	import LoopOne from "$lib/assets/repeat-one.png"
 	import QueueIcon from "$lib/assets/queue.png";
     import TrackItem from "./TrackItem.svelte";
-    import { Tween } from "svelte/motion";
-    import { cubicInOut } from "svelte/easing";
     import { page } from "$app/state";
 
 	const { uid } = $props()
