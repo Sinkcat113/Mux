@@ -2,7 +2,7 @@
     const { data } = $props()
     import ArtistPlaceholder from "$lib/assets/PlaceholderArtist.png";
     import AlbumPlaceholder from "$lib/assets/PlaceholderAlbum.png";
-    import type { Album, AlbumList, Artist, ArtistList } from "$lib/types.js";
+    import type { Album, Artist } from "$lib/types.js";
     import { page } from "$app/state";
 
     let Albums = $state() as Array<Album>

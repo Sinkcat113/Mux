@@ -1,5 +1,3 @@
-import Placeholder from "$lib/assets/PlaceholderArtist.png";
-
 export async function GET({ params, cookies }) {
     
     const address = JSON.parse(cookies.get("user") || "").User.Address

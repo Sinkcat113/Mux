@@ -1,5 +1,5 @@
 import { API_KEY } from '$env/static/private';
-import type { Album, Artist, ArtistList, TrackList } from '$lib/types.js';
+import type { Artist, ArtistList, TrackList } from '$lib/types.js';
 import { redirect } from '@sveltejs/kit';
 
 

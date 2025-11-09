@@ -1,6 +1,5 @@
 import { API_KEY } from "$env/static/private";
 import type { Libraries } from "$lib/types";
-import type { AlbumList, ArtistList } from "$lib/types";
 import { redirect } from "@sveltejs/kit";
 
 

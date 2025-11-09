@@ -1,5 +1,5 @@
 
-export async function GET({ params, cookies }) {
+export async function GET({ cookies }) {
     if (cookies.get("user")){
 
         const userId: string = JSON.parse(cookies.get("user") || "").User.Id;
