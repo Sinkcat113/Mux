@@ -22,4 +22,6 @@ Implement embed system.
 
 
 # User
-Use placeholder when user doesn't have a profile picture
+~~Use placeholder when user doesn't have a profile picture~~
+
+Add more details to the user drop down.

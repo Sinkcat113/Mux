@@ -9,12 +9,14 @@
 	import LibraryIcon from "$lib/assets/library.png";
     import { goto } from '$app/navigation';
     import { clickOutside } from 'svelte-outside';
+	import Placeholder from "$lib/assets/PlaceholderArtist.png";
 
 	let { children, data } = $props();
 
 	let searchTerm = $state("")
 
 	let isAccountOpen = $state(false)
+	let profilePic = $state(`/api/user/${data.User.User.Id}/image`)
 
 	const handleSearch = (e: KeyboardEvent) => {
 		if (e.key === "Enter")
@@ -48,7 +50,9 @@
 		</div>
 		<div class="profile-container">
 			<button class="btn-account" onclick={() => {isAccountOpen = !isAccountOpen}} use:clickOutside={(e) => {isAccountOpen = false}}>
-				<img class="profile-pic" src="/api/user/{data.User.User.Id}/image" alt="">
+				<img class="profile-pic" src={profilePic} onerror={() => {
+					profilePic = Placeholder
+				}} alt="">
 			</button>
 			{#if isAccountOpen}
 				<div class="account-options">
