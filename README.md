@@ -19,7 +19,6 @@ This file will contain server-side parameters for the app. Your `.env` file shou
 
 ```env
 API_KEY="<Your JellyFin API Key>"
-ADDRESS="<https://your.jellyfin.instance>"
 ```
 
 # Running Mux
