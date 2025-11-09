@@ -25,3 +25,6 @@ Implement embed system.
 ~~Use placeholder when user doesn't have a profile picture~~
 
 Add more details to the user drop down.
+
+# Libraries
+Filter out libraries that aren't for music
