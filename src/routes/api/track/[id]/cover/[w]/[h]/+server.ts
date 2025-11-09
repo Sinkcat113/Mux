@@ -1,8 +1,10 @@
-import { ADDRESS } from "$env/static/private";
 import Placeholder from "$lib/assets/PlaceholderArtist.png";
 
-export async function GET({ params }) {
-    const resp = await fetch(`${ADDRESS}/Items/${params.id}/Images/Primary?MaxWidth=${params.w}&MaxHeight=${params.h}`);
+export async function GET({ params, cookies }) {
+    
+    const address = JSON.parse(cookies.get("user") || "").User.Address
+
+    const resp = await fetch(`${address}/Items/${params.id}/Images/Primary?MaxWidth=${params.w}&MaxHeight=${params.h}`);
     const data = await resp.body;
 
     const headers = {

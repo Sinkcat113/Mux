@@ -1,4 +1,4 @@
-import { ADDRESS, API_KEY } from '$env/static/private';
+import { API_KEY } from '$env/static/private';
 import { fail, redirect } from '@sveltejs/kit';
 
 
@@ -7,9 +7,10 @@ export const actions = {
         const data = await request.formData();
         const username = data.get("username");
         const password = data.get("password");
+        const address = data.get("address");
 
-        if (username && password) {
-            const resp = await fetch(`${ADDRESS}/Users/AuthenticateByName`, {
+        if (username || password || address) {
+            const resp = await fetch(`${"https://" + address}/Users/AuthenticateByName`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,6 +28,7 @@ export const actions = {
 
                 cookies.set("user", JSON.stringify({
                     User: {
+                        Address: "https://" + address,
                         Name: userData.User.Name,
                         Id: userData.User.Id,
                     }

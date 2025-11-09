@@ -1,13 +1,20 @@
-import { API_KEY, ADDRESS } from '$env/static/private';
+import { API_KEY } from '$env/static/private';
 import type { Album, TrackList } from '$lib/types.js';
+import { redirect } from '@sveltejs/kit';
 
 
 export const load = async ({ params, cookies }) => {
 
-    const resp = await fetch(`${ADDRESS}/Users/${params.userId}/Items/${params.id}?api_key=${API_KEY}`)
+    if (!cookies.get("user")) {
+        redirect(308, "/login")
+    }
+
+    const address = JSON.parse(cookies.get("user") || "").User.Address
+
+    const resp = await fetch(`${address}/Users/${params.userId}/Items/${params.id}?api_key=${API_KEY}`)
     const data = await resp.json()
 
-    const tracksResp = await fetch(`${ADDRESS}/Items?parentId=${params.id}&collectionType=music&api_key=${API_KEY}`)
+    const tracksResp = await fetch(`${address}/Items?parentId=${params.id}&collectionType=music&api_key=${API_KEY}`)
     const tracks = await tracksResp.json()
 
     return {

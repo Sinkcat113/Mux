@@ -1,4 +1,4 @@
-import { ADDRESS, API_KEY } from "$env/static/private";
+import { API_KEY } from "$env/static/private";
 import type { AlbumList, ArtistList } from "$lib/types";
 import { redirect } from "@sveltejs/kit";
 
@@ -13,12 +13,14 @@ export const load = async ({ params, cookies }) => {
         "Authorization": `MediaBrowser Token=${API_KEY}`
     }
 
-    const resp = await fetch(`${ADDRESS}/Items?parentId=${params.collection}&collectionType=music`, {
+    const address = JSON.parse(cookies.get("user") || "").User.Address
+
+    const resp = await fetch(`${address}/Items?parentId=${params.collection}&collectionType=music`, {
         headers: header
     });
     const data = await resp.json()
 
-    const artistResp = await fetch(`${ADDRESS}/Artists`, {
+    const artistResp = await fetch(`${address}/Artists`, {
         headers: header
     });
     const artistData = await artistResp.json();

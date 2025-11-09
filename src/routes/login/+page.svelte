@@ -9,6 +9,14 @@
     <div class="login-form">
         <h3>Sign In</h3>
         <form class="login" action="/login" method="POST">
+            <div style="display: flex; gap: 8px;">
+                <select class="select-protocol" name="protocol">
+                    {#each ["http://", "https://"] as protocol}
+                        <option value={protocol}>{protocol}</option>
+                    {/each}
+                </select>
+                <input type="text" placeholder="Address" name="address">
+            </div>
             <div>
                 <input type="text" placeholder="Username" name="username">
             </div>
@@ -87,6 +95,23 @@
     }
 
     input:focus {
+        background-color: rgb(49, 49, 49);
+    }
+
+    select {
+        background-color: rgb(25, 25, 25);
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: rgba(128, 128, 128, 0.356);
+        color: white;
+        padding: 12px;
+        border-radius: 12px;
+        outline: none;
+        transition: 0.06s;
+        border: none;
+    }
+
+    select:focus {
         background-color: rgb(49, 49, 49);
     }
 

@@ -1,8 +1,11 @@
-import { ADDRESS, API_KEY } from '$env/static/private';
+import { API_KEY } from '$env/static/private';
 
 
 export async function GET({ params, cookies }) {
-    const resp = await fetch(`${ADDRESS}/Items/${params.id}/Download`, {
+
+    const address = JSON.parse(cookies.get("user") || "").User.Address
+
+    const resp = await fetch(`${address}/Items/${params.id}/Download`, {
         headers: {
             "Authorization": `MediaBrowser Token=${API_KEY}`
         }

@@ -1,12 +1,11 @@
-import { ADDRESS } from '$env/static/private'
-
 
 export async function GET({ params, cookies }) {
     if (cookies.get("user")){
 
         const userId: string = JSON.parse(cookies.get("user") || "").User.Id;
+        const address: string = JSON.parse(cookies.get("user") || "").User.Address
 
-        const resp = await fetch(`${ADDRESS}/UserImage?userId=${userId}`)
+        const resp = await fetch(`${address}/UserImage?userId=${userId}`)
         const data = await resp.body
 
         if (resp.status === 200) {
