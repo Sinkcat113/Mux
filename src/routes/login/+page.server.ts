@@ -8,9 +8,10 @@ export const actions = {
         const username = data.get("username");
         const password = data.get("password");
         const address = data.get("address");
+        const protocol = data.get("protocol");
 
-        if (username || password || address) {
-            const resp = await fetch(`${"https://" + address}/Users/AuthenticateByName`, {
+        if (username && password && address && protocol) {
+            const resp = await fetch(`${`${protocol}` + address}/Users/AuthenticateByName`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -28,7 +29,7 @@ export const actions = {
 
                 cookies.set("user", JSON.stringify({
                     User: {
-                        Address: "https://" + address,
+                        Address: `${protocol}` + address,
                         Name: userData.User.Name,
                         Id: userData.User.Id,
                     }
