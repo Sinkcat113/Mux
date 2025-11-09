@@ -18,6 +18,8 @@
 # Album Page
 Make the album viewable to un-authorized users with the new address system.
 
+Implement embed system.
+
 
 # User
 Use placeholder when user doesn't have a profile picture
