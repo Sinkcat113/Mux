@@ -13,3 +13,11 @@
 
 # ~~Search~~ ✅
 ~~Fix search to work with the new collection system~~
+
+
+# Album Page
+Make the album viewable to un-authorized users with the new address system.
+
+
+# User
+Use placeholder when user doesn't have a profile picture
