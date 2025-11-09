@@ -2,7 +2,11 @@ import { ADDRESS, API_KEY } from '$env/static/private';
 
 
 export async function GET({ params, cookies }) {
-    const resp = await fetch(`${ADDRESS}/Items/${params.id}/Download?api_key=${API_KEY}`);
+    const resp = await fetch(`${ADDRESS}/Items/${params.id}/Download`, {
+        headers: {
+            "Authorization": `MediaBrowser Token=${API_KEY}`
+        }
+    });
     
     const headers = {
         "Content-Type": "audio/mpeg",

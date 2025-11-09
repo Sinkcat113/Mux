@@ -7,7 +7,13 @@ export const load = async ({ cookies }) => {
 
         const userId: string = JSON.parse(cookies.get("user") || "").User.Id
 
-        const resp = await fetch(`${ADDRESS}/Items?userId=${userId}&api_key=${API_KEY}`)
+        const header = {
+            "Authorization": `MediaBrowser Token=${API_KEY}`
+        }
+
+        const resp = await fetch(`${ADDRESS}/Items?userId=${userId}`, {
+            headers: header
+        })
         const data = await resp.json()
 
         return {

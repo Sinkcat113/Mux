@@ -9,10 +9,18 @@ export const load = async ({ params, cookies }) => {
         redirect(308, "/login")
     }
 
-    const resp = await fetch(`${ADDRESS}/Items?parentId=${params.collection}&collectionType=music&api_key=${API_KEY}`);
+    const header = {
+        "Authorization": `MediaBrowser Token=${API_KEY}`
+    }
+
+    const resp = await fetch(`${ADDRESS}/Items?parentId=${params.collection}&collectionType=music`, {
+        headers: header
+    });
     const data = await resp.json()
 
-    const artistResp = await fetch(`${ADDRESS}/Artists?api_key=${API_KEY}`);
+    const artistResp = await fetch(`${ADDRESS}/Artists`, {
+        headers: header
+    });
     const artistData = await artistResp.json();
 
     return {

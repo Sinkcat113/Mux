@@ -6,13 +6,23 @@ export const load = async ({ params, cookies }) => {
 
     const userID: string = JSON.parse(cookies.get("user") || "").User.Id
 
-    const resp = await fetch(`${ADDRESS}/Users/${userID}/Items/${params.id}?api_key=${API_KEY}`)
+    const header = {
+        "Authorization": `MediaBrowser Token=${API_KEY}`
+    }
+
+    const resp = await fetch(`${ADDRESS}/Users/${userID}/Items/${params.id}`, {
+        headers: header
+    })
     const data = await resp.json()
 
-    const tracksResp = await fetch(`${ADDRESS}/Items?ParentId=${params.collection}&ArtistIds=${params.id}&IncludeItemTypes=MusicAlbum&Recursive=true&api_key=${API_KEY}`)
+    const tracksResp = await fetch(`${ADDRESS}/Items?ParentId=${params.collection}&ArtistIds=${params.id}&IncludeItemTypes=MusicAlbum&Recursive=true`, {
+        headers: header
+    })
     const tracks = await tracksResp.json()
 
-    const artistResp = await fetch(`${ADDRESS}/Artists/${params.id}/Similar?api_key=${API_KEY}`);
+    const artistResp = await fetch(`${ADDRESS}/Artists/${params.id}/Similar`, {
+        headers: header
+    });
     const artists = await artistResp.json();
 
     return {

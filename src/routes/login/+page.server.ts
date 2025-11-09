@@ -9,10 +9,11 @@ export const actions = {
         const password = data.get("password");
 
         if (username && password) {
-            const resp = await fetch(`${ADDRESS}/Users/AuthenticateByName?api_key=${API_KEY}`, {
+            const resp = await fetch(`${ADDRESS}/Users/AuthenticateByName`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `MediaBrowser Token=${API_KEY}`
                 },
                 body: JSON.stringify({
                     Username: username,
