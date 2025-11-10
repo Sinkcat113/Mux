@@ -16,7 +16,7 @@
 	let searchTerm = $state("")
 
 	let isAccountOpen = $state(false)
-	let profilePic = $state(`/api/user/${data.User.User.Id}/image`)
+	let profilePic = $state(data.User ? `/api/user/${data.User.User.Id}/image` : Placeholder)
 
 	const handleSearch = (e: KeyboardEvent) => {
 		if (e.key === "Enter")
